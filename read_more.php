@@ -1,0 +1,3 @@
+   <div>
+   	<p>The College produces highly skilled technicians which are well placed in reputed companies through campus placement and direct recruitment. Some students go for higher studies. Our college is well equipped with latest instruments having well qualified and experienced faculty and staff members. Our college is committed to produce skilled and expert technicians in various branches of Engineering and also involved in various activities and latest developments for providing value based education to students for their coming bright future.</p>
+   </div>

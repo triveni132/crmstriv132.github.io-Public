@@ -1,0 +1,50 @@
+<?php
+$id = $_REQUEST['id'];
+	$count=1;
+	$sel_query = "select * from new_vacancy where id='$id'";
+	$result = mysqli_query($con,$sel_query);
+	while($row = mysqli_fetch_assoc($result))
+     
+	{
+		?>
+          <tr>
+             <td> Company Name :
+             <td><input type="text" name="company_name" value="<?php echo $row["company_name"]; ?>"></td>
+        </tr>
+
+		<tr>
+             <td> Job Title :
+             <td><input type="text" name="job_title" value="<?php echo $row["job_title"]; ?>"></td>
+        </tr>
+        <tr>
+             <td> Monthly in-hand salary :
+             <td><input type="text" name="salary" value="<?php echo $row["salary"]; ?>"></td>
+        </tr>
+        <tr>
+             <td> Job Description :
+             <td><input type="text" name="job_description" value="<?php echo $row["job_description"]; ?>"></td>
+        </tr>
+        <tr>
+             <td> Job Location :
+             <td><input type="text" name="job_location" value="<?php echo $row["job_location"]; ?>"></td>
+        </tr>
+        <tr>
+             <td> Number Of Opening :
+             <td><input type="text" name="no_of_opening" value="<?php echo $row["no_of_opening"]; ?>"></td>
+        </tr>
+        <tr>
+             <td> Apply Date :
+             <td><input type="date" name="apply_date" value="<?php echo $row["apply_date"]; ?>"></td>
+        </tr>
+        <tr>
+             <td>Last Date :
+             <td><input type="date" name="last_date" value="<?php echo $row["last_date"]; ?>"></td>
+        </tr>
+         <tr>
+            <td>Add Your Resume :</td>
+            <td><input type="file" name="resume" placeholder="Resume" ></td>
+        </tr>
+        <tr>
+   			<td> <input type="submit" name="submit" value="Apply" onclick="f();"></td>
+        </tr>
+        <?php $count++; }?>	

@@ -1,0 +1,247 @@
+kisi other CSS file ko apni php ya html file me add karna ho tab :
+					<link rel="stylesheet"  href="filename.extension">
+
+kisi other JAVASCRIPT file ko apni php ya html file me add karna ho tab :
+<script src="jsfilename.js">
+
+	password validation :
+
+	<script>
+     function validate(){
+
+            var a = document.getElementById("password").value;
+            var b = document.getElementById("confirm_password").value;
+            if (a!=b) {
+               alert("Passwords do no match ");
+              
+            }else{
+                window.location="homepage.php";
+                //alert("Passwords match");
+                //hearder("location:daseboard.php")
+               return false;
+            }
+        }
+</script>
+
+
+multilevel dropdown
+
+
+/*.sub_con{
+  display: none;
+  position: fixed;
+  font-size: 20px;
+  background-color: skyblue;
+   
+
+}
+
+.sub_con a {
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+  display: block;
+  float: left;
+}
+
+.sub_con a:hover {background-color: deepskyblue;} 
+*/
+/*.sub_con{
+  position: absolute;
+  background-color: deepskyblue;
+  width: 140px;
+  left: 100%;
+  top: 0;
+}
+.sub_menu{
+  position: absolute;
+  background-color: deepskyblue;
+  width: 140px;
+  left: 100%;
+ 
+}
+.sub_menu{
+   position: absolute;
+  background-color: deepskyblue;
+  width: 140px;
+  left: 100%;
+  top: 0;
+  
+}
+
+/*.content li:hover > .sub_menu{
+  display: block;
+}
+.sub_menu li:hover > .sub_menu_sec{
+  display: block;
+}*/
+
+
+
+
+
+apply jobs page
+
+
+
+<?php
+require('db.php');
+$id=$_REQUEST['id'];
+$query = "SELECT * from new_vacancy where id='".$id."'"; 
+$result = mysqli_query($con, $query) or die ( mysqli_error());
+$row = mysqli_fetch_assoc($result);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Apply Jobs</title>
+<style>
+     .main{
+          background-color: darkblue;
+          padding: 15px;
+          color: white;
+     }
+     .apply{
+           background-color: darkblue;
+          padding: 10px;
+          color: white;
+     }
+     input[type="text"], input[type="date"]
+     {
+           width: 100%;
+  padding: 15px;
+  margin: 10px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: white;
+     }
+     input[type=submit] {
+        background-color: green;
+        color: white;
+        padding: 8px 20px;
+        border: none;
+        cursor: pointer;
+        margin-right: 60px;
+    }
+     .back{
+          color: red;
+          font-size: 25px;
+     }
+</style>
+</head>
+
+<body>
+
+<div class="apply">
+ <a href="view_vacancy.php" class="back">Back</a>
+<center><h1>Apply Job </h1></div><br><br></center>
+
+<center><div class="formtab">
+<fieldset style="background-color:  antiquewhite; height: 800px; width: 600px;">
+<legend></legend>
+  
+<form class="form" action="" method="POST" >
+<table  class="table">
+     <input name="id" type="hidden" value="<?php echo $row['id'];?>" />
+          <tr>
+             <td> Company Name :
+             <td><input type="text" name="company_name" value="<?php echo $row['company_name'];?>"></td>
+        </tr>
+
+    <tr>
+             <td> Job Title :
+             <td><input type="text" name="job_title" value="<?php echo $row['job_title'];?>"></td>
+        </tr>
+        <tr>
+             <td> Monthly in-hand salary :
+             <td><input type="text" name="salary" value="<?php echo $row['salary'];?>"></td>
+        </tr>
+        <tr>
+             <td> Job Description :
+             <td><input type="text" name="job_description" value="<?php echo $row['job_description'];?>"></td>
+        </tr>
+        <tr>
+             <td> Job Location :
+             <td><input type="text" name="job_location" value="<?php echo $row['job_location'];?>"></td>
+        </tr>
+        <tr>
+             <td> Number Of Opening :
+             <td><input type="text" name="no_of_opening" value="<?php echo $row['no_of_opening'];?>"></td>
+        </tr>
+        <tr>
+             <td> Apply Date :
+             <td><input type="date" name="apply_date" value="<?php echo $row['apply_date'];?>"></td>
+        </tr>
+        <tr>
+             <td>Last Date :
+             <td><input type="date" name="last_date" value="<?php echo $row['last_date'];?>"></td>
+        </tr>
+         <tr>
+            <td>Add Your Resume :</td>
+            <td><input type="file" name="resume" placeholder="Resume" ></td>
+        </tr>
+        <tr>
+        <td> <input type="submit" name="submit" value="Apply" onclick="f();"></td>
+        </tr>
+          
+</table>
+</form>
+</fieldset>
+</center>
+</div>
+
+<script type="text/javascript">
+function f() 
+     {
+          alert('You are successfully apply for this job..');
+     }
+</script>
+</body>
+</html>
+
+
+
+
+
+apply job insert query
+        <?php
+
+include("db.php");
+
+if(isset($_POST['submit']))
+{
+     // variables for input data 
+     $company_name = $_POST['company_name'];
+     $job_title = $_POST['job_title'];
+     $salary = $_POST['salary'];
+     $job_description = $_POST['job_description'];
+     $job_location = $_POST['job_location'];
+     $no_of_opening = $_POST['no_of_opening'];
+     $apply_date = $_POST['apply_date'];
+     $last_date = $_POST['last_date'];
+     $resume = $_POST['resume'];
+
+
+     // sql query for inserting data into database
+     $result = mysqli_query($con, "INSERT INTO  history_applied_job(company_name,job_title,salary,job_description,job_location,no_of_opening,apply_date,last_date,resume) VALUES('$company_name','$job_title','$salary','$job_description','$job_location','$no_of_opening','$apply_date','$last_date','$resume')");
+
+      if($result){
+            echo "<div class='form'><h3>New Vacancy added successfully</h3><br/>Click here to <a href='after_login_student_job.php'>Your Dashboard</a></div>";
+        }
+    }else{
+?>
+
+
+disabled="disabled"
+
+<tr>
+             <td> Number Of Opening :</td>
+             <td><input type="text" name="no_of_opening"  value="<?php echo $row['no_of_opening']; ?>" disabled="disabled"></td>
+        </tr>
+         input[type=text]:enabled {
+  background: #ffff00;
+}
+
+input[type=text]:disabled {
+  background: #dddddd;
+}
